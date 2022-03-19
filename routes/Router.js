@@ -1,10 +1,7 @@
 const { Router } = require("express");
+const postRouter = require("./Posts/post.router");
 const routes = Router();
 
-routes.get("/", (req, res) => {
-    return res.json({
-        message: 'API Working, Go edit them files ��'
-    });
-});
+routes.get("/", postRouter);
 
 module.exports = routes;
