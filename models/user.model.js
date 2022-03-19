@@ -8,6 +8,10 @@ const UserSchema = new mongoose.Schema({
     profile: {
         type: Object,
         required: true
+    },
+    admin: {
+        type: Boolean,
+        default: false
     }
 });
 
