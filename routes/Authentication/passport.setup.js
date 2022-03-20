@@ -5,11 +5,13 @@ const { Strategy } = require("passport-google-oauth20");
 
 async function setup() {
     passport.serializeUser(function(user, done) {
-        done(null, user);
+        console.log("now I'm here niggas", user.id);
+        done(null, user.id);
     });
   
-    passport.deserializeUser(function(user, done) {
-        done(null, user);
+    passport.deserializeUser(async function(id, done) {
+        const user = await UserModel.find({ id: id });
+        if(user) done(null, user && user[0]);
     });
 
     passport.use(new Strategy({
@@ -17,15 +19,17 @@ async function setup() {
         clientSecret: GOOGLE_CLIENT_SECRET,
         callbackURL: 'http://localhost:8000/auth/google/callback'
     }, async (accessToken, refreshToken, profile, done) => {
+        console.log("Typeof profile.id is: ", typeof profile.id);
         if (profile) {
             // save user if doesn't exist
             const foundUsers = await UserModel.find({ id: profile.id });
             if (foundUsers.length == 0) {
-                const newUser = new UserModel({ profile, id: profile.id });
+                const newUser = new UserModel({ profile: profile, id: profile.id });
                 try {
                     await newUser.save()
                     done(null, profile);
                 } catch (error) {
+                    console.error(error.message)
                     done(error, null)
                 }
             } else {

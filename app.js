@@ -14,7 +14,7 @@ const passport = require("passport");
 const cookieMiddleware = require("./helpers/cookie-middleware");
 const app = express();
 
-app.use(cors());
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 app.use(cookieMiddleware);
 app.use(helmet());
 app.use(logger);

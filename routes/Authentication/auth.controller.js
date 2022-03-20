@@ -8,8 +8,9 @@ const passportSetup = require("./passport.setup");
 const google = passport.authenticate("google", { scope: ['profile'] });
 const googleCb = passport.authenticate("google", {
     failureRedirect: '/',
-    successRedirect: '/posts/all',
+    successRedirect: 'http://localhost:3000/sso/',
 });
+
 const logout = (req, res) => {
     console.log(req.user);
     req.session = null;
@@ -19,9 +20,14 @@ const logout = (req, res) => {
     })
 }
 
+const verify = (req, res) => {
+    console.log("user", req.user);
+    return res.json({ user: req.user });
+}
 
 module.exports = {
     google,
     googleCb,
-    logout
+    logout,
+    verify
 }
