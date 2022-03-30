@@ -8,7 +8,7 @@ const passportSetup = require("./passport.setup");
 const google = passport.authenticate("google", { scope: ['profile'] });
 const googleCb = passport.authenticate("google", {
     failureRedirect: '/',
-    successRedirect: 'http://localhost:3000/sso/',
+    successRedirect: 'https://texture-prod-2.vercel.app/sso/',
 });
 
 const logout = (req, res) => {
