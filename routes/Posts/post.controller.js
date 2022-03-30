@@ -17,7 +17,14 @@ async function createNew(req, res) {
     };
 };
 
+async function getPost(req, res) {
+    console.log(req.query.id);
+    const _post = await Post.find({_id: req.query.id});
+    return res.json({post: _post[0]});
+}
+
 module.exports = {
     getAll,
-    createNew
+    createNew,
+    getPost
 }

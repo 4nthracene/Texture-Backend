@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
 const passport = require("passport")
+const InitializeSocket = require("../configurations/socket");
 const CONFIG = require("../config");
 
-module.exports = async function(app) {
+module.exports = async function(app, server) {
     const services = {};
     // Implement database connectivity
     try {
@@ -12,7 +13,8 @@ module.exports = async function(app) {
     } catch(error) {
         console.error(error.message);
     }
-    // Check External API Status
+    // Initialize Sockets
+    InitializeSocket(server);
 
     if(process.env.MODE == "prod") {
         // Run tests
