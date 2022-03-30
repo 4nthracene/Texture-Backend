@@ -5,7 +5,6 @@ const { Strategy } = require("passport-google-oauth20");
 
 async function setup() {
     passport.serializeUser(function(user, done) {
-        console.log("now I'm here niggas", user.id);
         done(null, user.id);
     });
   
@@ -17,7 +16,7 @@ async function setup() {
     passport.use(new Strategy({
         clientID: GOOGLE_CLIENT_ID,
         clientSecret: GOOGLE_CLIENT_SECRET,
-        callbackURL: 'http://localhost:8000/auth/google/callback'
+        callbackURL: 'https://texture-blog.herokuapp.com/auth/google/callback'
     }, async (accessToken, refreshToken, profile, done) => {
         console.log("Typeof profile.id is: ", typeof profile.id);
         if (profile) {
