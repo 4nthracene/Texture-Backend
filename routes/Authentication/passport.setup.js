@@ -5,6 +5,7 @@ const { Strategy } = require("passport-google-oauth20");
 
 async function setup() {
     passport.serializeUser(function(user, done) {
+        console.log('passport.setup.js:8', user);
         done(null, user.id);
     });
   
