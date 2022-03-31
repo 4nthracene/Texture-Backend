@@ -15,7 +15,7 @@ const cookieMiddleware = require("./helpers/cookie-middleware");
 const app = express();
 
 // Configurations
-app.use(cors({ origin: '*', credentials: true }));
+app.use(cors({ origin: 'https://texture-prod-2.vercel.app', credentials: true }));
 app.use(cookieMiddleware);
 app.use(helmet());
 app.use(logger);
