@@ -20,6 +20,7 @@ async function setup() {
         callbackURL: 'https://texture-blog.herokuapp.com/auth/google/callback'
     }, async (accessToken, refreshToken, profile, done) => {
         if (profile) {
+            console.log('PROFILE ID: ', profile.id);
             // save user if doesn't exist
             const foundUsers = await UserModel.find({ id: profile.id });
             if (foundUsers.length == 0) {
