@@ -5,7 +5,7 @@ const useAdmin = require("../../helpers/useAdmin");
 const useSignin = require("../../helpers/useSignin")
 const postRouter = Router();
 
-postRouter.get("/all", useSignin, getAll);
+postRouter.get("/all", getAll);
 postRouter.post("/", useAdmin, createNew);
 postRouter.get("/", useSignin, getPost);
 
