@@ -6,7 +6,9 @@ const AuthRouter = Router();
 
 AuthRouter.get("/google", google);
 AuthRouter.get("/data", verify);
-AuthRouter.get("/google/callback", googleCb, (req, res) => {
+AuthRouter.get("/google/callback", (req, res, next) => {
+    console.log("PLASHDLASJLSADDSA-------------", req.user);
+},googleCb, (req, res) => {
     console.log("user: ", req.user);
     res.send("Thanks");
 });
