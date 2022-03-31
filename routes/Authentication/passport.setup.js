@@ -18,7 +18,7 @@ async function setup() {
         clientSecret: GOOGLE_CLIENT_SECRET,
         callbackURL: 'https://texture-blog.herokuapp.com/auth/google/callback'
     }, async (accessToken, refreshToken, profile, done) => {
-        console.log("Typeof profile.id is: ", typeof profile.id);
+        console.log(profile);
         if (profile) {
             // save user if doesn't exist
             const foundUsers = await UserModel.find({ id: profile.id });
